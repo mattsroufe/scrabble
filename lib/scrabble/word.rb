@@ -7,9 +7,7 @@ class Word
   end
 
   def self.highest_score_from(words)
-    highest_score = words.max_by(&:score).score
-    words.delete_if { |word| word.score < highest_score }
-    words.min_by(&:letter_count)
+    words.find_all { |word| word.score == words.max_by(&:score).score }.min_by(&:letter_count)
   end
 
   def letter_count

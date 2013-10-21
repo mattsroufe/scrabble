@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Word do
+    let(:hi) { Word.new('hi') }
+    let(:home) { Word.new('home') }
+    let(:ward) { Word.new('ward') }
+    let(:word) { Word.new('word') }
+    let(:hello) { Word.new('hello') }
+    let(:sound) { Word.new('sound') }
+    let(:silence) { Word.new('silence') }
+
   describe ".new" do
     it "creates a word object with a string argument" do
       expect(Word.new("string")).to be_an_instance_of Word
@@ -20,14 +28,6 @@ describe Word do
   end
 
   describe ".highest_score_from" do
-    let(:hi) { Word.new('hi') }
-    let(:home) { Word.new('home') }
-    let(:ward) { Word.new('ward') }
-    let(:word) { Word.new('word') }
-    let(:hello) { Word.new('hello') }
-    let(:sound) { Word.new('sound') }
-    let(:silence) { Word.new('silence') }
-
     it "returns the word with the highest score" do
       expect(Word.highest_score_from([home, word, hello, sound])).to eq(home)
     end
