@@ -14,6 +14,10 @@ class Letter
     @all ||= COUNTS.dup
   end
 
+  def self.reset_letters
+    @all = COUNTS.dup
+  end
+
   def self.count
     all.values.inject { |sum, number| sum + number }
   end

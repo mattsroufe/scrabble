@@ -1,9 +1,10 @@
 class Player
-  attr_reader :score, :name
+  attr_reader :score, :name, :id
   attr_accessor :letters
 
   def initialize(name)
     @name = name
+    @id = Player.count + 1
     @score = 0
     @letters = []
     Player.all << self
@@ -13,18 +14,26 @@ class Player
     @all ||= []
   end
 
+  def self.count
+    all.count ||= 0
+  end
+
   def self.score
     Player.all.map do |player|
       [player.name, player.score]
     end
   end
 
+  def self.find(id)
+    Player.find_by(:id => id)
+  end
+
   def self.find_by(args = {})
     Player.all.find { |player| player.send(args.keys[0]) == args.values[0] }
   end
 
-  def selects_letters
-    for i in letters.count...7 do
+  def selects_letters(num = 7)
+    while letters.count < num do
       letters << Letter.select_random
     end
   end
