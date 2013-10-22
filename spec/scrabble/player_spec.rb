@@ -27,6 +27,13 @@ describe Player do
     end
   end
 
+  describe ".score" do
+    it "returns an array of the players' names and scores" do
+      create_players
+      expect(Player.score).to eq([["Julius", 0], ["Vincent", 0]])
+    end
+  end
+
   describe ".find_by" do
     it "finds the first player matching the method and value" do
       create_players

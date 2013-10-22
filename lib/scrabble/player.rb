@@ -13,6 +13,12 @@ class Player
     @all ||= []
   end
 
+  def self.score
+    Player.all.map do |player|
+      [player.name, player.score]
+    end
+  end
+
   def self.find_by(args = {})
     Player.all.find { |player| player.send(args.keys[0]) == args.values[0] }
   end
