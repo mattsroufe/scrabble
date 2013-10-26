@@ -3,14 +3,17 @@ require 'spec_helper'
 describe Letter do
   describe ".all" do
     it "returns a has of all the letters" do
-      expect(Letter.all).to eq(["","","A","A","A","A","A","A","A","A","A","B","B","C","C","D","D","D","D","E","E","E","E","E","E","E","E","E","E","E","E","F","F","G","G","G","H","H","I","I","I","I","I","I","I","I","I","J","K","L","L","L","L","M","M","N","N","N","N","N","N","O","O","O","O","O","O","O","O","P","P","Q","R","R","R","R","R","R","S","S","S","S","T","T","T","T","T","T","U","U","U","U","V","V","W","W","X","Y","Y","Z"])
+      expect(Letter.all.count).to eq(100)
     end
   end
 
   describe ".remaining" do
     it "returns the remaining letters" do
-      expect(Letter.remaining).to eq(["","","A","A","A","A","A","A","A","A","A","B","B","C","C","D","D","D","D","E","E","E","E","E","E","E","E","E","E","E","E","F","F","G","G","G","H","H","I","I","I","I","I","I","I","I","I","J","K","L","L","L","L","M","M","N","N","N","N","N","N","O","O","O","O","O","O","O","O","P","P","Q","R","R","R","R","R","R","S","S","S","S","T","T","T","T","T","T","U","U","U","U","V","V","W","W","X","Y","Y","Z"])
       expect(Letter.remaining.count).to eq(100)
+      expect(Letter.remaining.select { |letter| letter == 'F' }.count).to eq(2)
+      Letter.remove("f")
+      expect(Letter.remaining.count).to eq(99)
+      expect(Letter.remaining.select { |letter| letter == 'F' }.count).to eq(1)
     end
   end
 
@@ -22,6 +25,7 @@ describe Letter do
 
   describe ".reset_letters" do
     it "resets Letter.remaing to the original letter values" do
+      Letter.reset_letters
       expect(Letter.remaining.count).to eq(100)
       Letter.remove("f")
       expect(Letter.remaining.count).to eq(99)

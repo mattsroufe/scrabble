@@ -28,6 +28,8 @@ class Letter
               "Y" => {:score => 4,  :count => 2},
               "Z" => {:score => 10, :count => 1} }
 
+  MULTIPLIERS = {:single => 1, :double => 2, :triple => 3}
+
   def self.all
     letters = []
     LETTERS.each do |k,v|
@@ -37,8 +39,6 @@ class Letter
     end
     letters
   end
-
-  MULTIPLIERS = {:single => 1, :double => 2, :triple => 3}
 
   def self.remaining
     @remaining ||= all
