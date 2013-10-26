@@ -8,22 +8,26 @@ class Game
   end
 
   def start
-    create_players(number_of_players)
-    Player.all.each do |player|
-      puts "#{player.id} - #{player.name}"
-    end
-    coin_toss
-    puts "Total letters remaining: #{Letter.count}\n"
-  end
-
-  def create_players(number_of_players)
     while Player.all.count < number_of_players
       print "Player #{Player.count + 1} name: "
       Player.new(gets.chomp)
     end
+    pick_first_player
+    score_board
   end
 
-  def coin_toss
+  def score_board
+    puts "PLAYER | SCORE"
+    puts "--------------"
+    Player.all.each do |player|
+      puts "#{player.name} | #{player.score}"
+    end
+    puts "Total letters remaining: #{Letter.count}\n"
+  end
+
+private
+
+  def pick_first_player
     puts "picking letters to see who goes first..."
     sleep(1)
     Player.all.each do |player|

@@ -24,23 +24,18 @@ class Letter
 
   def self.remove(letter)
     all[letter.upcase] -= 1
-  end
-
-  def self.select_random
-    letter = all.keys.sample
-    remove(letter)
     letter
   end
 
+  def self.select_random
+    remove(all.keys.sample)
+  end
+
   def self.score(letter)
-    SCORES.each do |k, v|
-      return v if k == letter.upcase
-    end
+    SCORES[letter.upcase]
   end
 
   def self.multiplier(multiplier)
-    MULTIPLIERS.each do |k, v|
-      return v if k == multiplier
-    end
+    MULTIPLIERS[multiplier]
   end
 end

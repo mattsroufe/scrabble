@@ -21,7 +21,7 @@ class Word
   end
 
   def score
-    @score ||= calculate_score(letter_scores, multipliers)
+    @score ||= calculate_score
   end
 
   def has_multiplier?(multiplier)
@@ -30,7 +30,7 @@ class Word
 
   private
 
-  def calculate_score(letter_scores, multipliers)
+  def calculate_score
     score = letter_scores.zip(multipliers).inject(0) do |score, letter|
       has_multiplier?(letter[1]) ? score + letter[0] * Letter.multiplier(letter[1]) : score + letter[0]
     end
