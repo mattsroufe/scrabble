@@ -31,13 +31,9 @@ class Letter
   MULTIPLIERS = {:single => 1, :double => 2, :triple => 3}
 
   def self.all
-    letters = []
-    LETTERS.each do |k,v|
-      LETTERS[k][:count].times do
-        letters << k
-      end
-    end
-    letters
+    LETTERS.keys.map do |letter|
+      [letter] * LETTERS[letter][:count]
+    end.flatten
   end
 
   def self.remaining

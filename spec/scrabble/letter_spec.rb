@@ -25,9 +25,6 @@ describe Letter do
 
   describe ".reset_letters" do
     it "resets Letter.remaing to the original letter values" do
-      Letter.reset_letters
-      expect(Letter.remaining.count).to eq(100)
-      Letter.remove("f")
       expect(Letter.remaining.count).to eq(99)
       Letter.reset_letters
       expect(Letter.remaining.count).to eq(100)
