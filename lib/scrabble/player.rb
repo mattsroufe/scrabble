@@ -34,7 +34,7 @@ class Player
 
   def selects_letters(num = 7)
     while letters.count < num do
-      letters << Letter.select_random
+      letters << Letter.remaining.sample
     end
   end
 

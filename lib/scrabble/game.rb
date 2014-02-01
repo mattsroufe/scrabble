@@ -22,7 +22,7 @@ class Game
     Player.all.each do |player|
       puts "#{player.name} | #{player.score}"
     end
-    puts "Total letters remaining: #{Letter.count}\n"
+    puts "Total letters remaining: #{Letter.remaining.count}\n"
   end
 
 private
